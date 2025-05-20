@@ -1,4 +1,4 @@
-# python-training# Python Training with ChatGPT
+# python-training# Python Training
 
 このリポジトリは、Pythonの基本操作を学習するための個人練習用です。
 
