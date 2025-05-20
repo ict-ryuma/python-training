@@ -28,3 +28,8 @@ with open("people_output.csv", "w", newline="", encoding="utf-8") as f:
 
 print("CSVファイルを出力しました。")  # 実行されたか目印になります
 
+print(f"人数：{len(people)}人")
+print(f"平均年齢：{average_age:.1f}歳")
+for person in people:
+    print(f"{customer['name']}（{customer['age']}歳）- スコア: {customer['score']}")
+
