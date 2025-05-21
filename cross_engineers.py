@@ -8,7 +8,7 @@ summary = defaultdict(lambda: defaultdict(int)) # 初期値を0とカウント�
 with open("people.csv", newline="", encoding="utf-8") as f:
     reader = csv.DictReader(f)
     for row in reader:
-        if "エンジニア" not in row["職業"]:
+        if "エンジニア" in row["職業"]:
             job = row["職業"] # 列として代入する
             age = row["年齢"]
             summary[job][age] += 1 # カウントしたら1を足していく
