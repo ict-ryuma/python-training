@@ -2,33 +2,31 @@ import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score
+import joblib
 
-# 1. CSV読み込み
+# データ読み込み
 df = pd.read_csv("ml_sample.csv")
 
-# 2. カテゴリ変換（職業 → 数値に変換）
-le = LabelEncoder()
-df["職業"] = le.fit_transform(df["職業"])  # 例：営業→0、Pythonエンジニア→1...
+# ラベルエンコード
+le_job = LabelEncoder()
+le_gender = LabelEncoder()
+le_divorce = LabelEncoder()
 
-# 3. 説明変数（X）と目的変数（y）を分ける
-X = df[["年齢", "職業", "残業時間"]]  # 入力データ
-y = df["退職"]                     # 予測したいもの
+df["職業"] = le_job.fit_transform(df["職業"])
+df["性別"] = le_gender.fit_transform(df["性別"])
+df["離婚"] = le_divorce.fit_transform(df["離婚"])
 
-# 4. 学習データとテストデータに分ける
+# 特徴量と目的変数に分ける
+X = df[["年齢", "職業", "残業時間", "性別", "離婚", "パワハラレベル"]]
+y = df["退職"]
+
+# 学習データとテストデータに分割
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
 
-# 5. モデル作成と学習
+# モデル作成・学習
 model = RandomForestClassifier()
 model.fit(X_train, y_train)
 
-# 6. 予測して精度を確認
-y_pred = model.predict(X_test)
-print("✅ 予測精度：", accuracy_score(y_test, y_pred))
-
-# 7. 実際の予測も表示
-print("\n▼ 予測結果")
-print(pd.DataFrame({
-    "実際": y_test.values,
-    "予測": y_pred
-}))
+# モデル・エンコーダを保存
+joblib.dump(model, "model.pkl")
+joblib.dump(le_job, "label_encoder.pkl")

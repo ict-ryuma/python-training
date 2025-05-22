@@ -455,3 +455,58 @@ AIに正しい実力をつけるためには、
 
 アクセス: http://localhost:8501 でローカルGUI表示
 
+---
+
+## 📅 2025-05-22（木）退職予測アプリ「エンジニア → ユーザー」転換完了
+
+### 🎯 目的とゴール
+- 退職予測アプリにパワハラレベルを追加し、より現実的な予測とUI表示を行う
+- Streamlitアプリを強化し、実行可能なTipsと理由を出すUXを設計する
+
+---
+
+### ✨ できたこと・進捗まとめ
+
+#### ✅ 学習＆実装項目
+- `generate_data.py`：退職しやすさに関係する項目をロジックで制御しながらダミーデータ100件作成
+- `ml_model.py`：RandomForestでのモデル学習と保存（`model.pkl`）
+- `ml_predict_app2.py`：
+  - StreamlitでUI作成（年齢、職業、残業時間、性別、離婚、パワハラ）
+  - モデル予測（確率表示つき）
+  - 条件に応じて退職理由・アドバイスを動的に出す仕組み
+- `requirements.txt`作成完了（scikit-learn, pandas, streamlit など）
+
+#### ✅ エラー対応
+- `IndentationError`, `NameError`, `FileNotFoundError`, `SyntaxError` など複数をリアルに解決
+- `new_data`のスコープミスを修正して確率予測も表示できるようになった
+
+---
+
+### 💡 学んだこと・得られたスキル
+
+| 分類             | 内容 |
+|------------------|------|
+| Python基礎       | 辞書リストからDataFrame作成、条件分岐の設計 |
+| pandas           | カラム選択、CSV保存、DataFrameへのappend |
+| scikit-learn     | LabelEncoderの使用、RandomForestでの分類、train_test_split |
+| Streamlit        | 入力UI、ボタン処理、結果の分岐、動的表示、確率スコア表示 |
+| モデル評価       | accuracy, confusion_matrix, classification_report の出力 |
+| Git意識          | ファイル構造を意識した整理、ローカル → Web実行の流れ理解 |
+| ユーザー体験設計 | リスク提示＋アドバイス提示まで連動した構成設計ができた！ |
+
+---
+
+### 📌 次やること
+
+- [ ] `streamlit run ml_predict_app2.py` で公開再開（URL取得）
+- [ ] GitHubで本日の進捗をコミット＆README追記
+- [ ] ユーザー視点での改善：UI微調整／Tips強化／モデルチューニング
+- [ ] SHAPなどで予測根拠の可視化（Explainable AIに進む）
+
+---
+
+### 🐼 ひとこと
+
+> 今日は「ただの予測」から「意味あるフィードバックを出す」ことに挑戦できた。  
+> ミスも多かったけど、全部動くようになったことが本当に嬉しい。  
+> 明日ももっと実践的な精度改善に挑戦したい。
