@@ -16,14 +16,15 @@ power_harassment = st.slider("パワハラレベル", 0, 10, 3)
 
 # モデル・エンコーダ読み込み
 model = joblib.load("model.pkl")
-label_encoder = joblib.load("label_encoder.pkl")
+le_job = joblib.load("le_job.pkl")
+le_gender = joblib.load("le_gender.pkl")
+le_divorce = joblib.load("le_divorce.pkl")
 
 # 予測ボタン
 if st.button("AIに予測してもらう"):
-    # エンコード処理
-    job_encoded = label_encoder.transform([job])[0]
-    gender_encoded = 0 if gender == "男性" else 1
-    divorce_encoded = 0 if divorce == "なし" else 1
+    job_encoded = le_job.transform([job])[0]
+    gender_encoded = le_gender.transform([gender])[0]
+    divorce_encoded = le_divorce.transform([divorce])[0]
 
     # 入力データを DataFrame にまとめる
     new_data = pd.DataFrame([{
